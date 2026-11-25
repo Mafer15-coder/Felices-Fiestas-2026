@@ -1,1 +1,116 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felices Fiestas 2026 | Ferval</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff8ef;
+    font-family: Georgia, serif;
+    text-align: center;
+}
+
+.tarjeta {
+    max-width: 550px;
+    margin: auto;
+}
+
+.tarjeta img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.musica {
+    padding: 20px 10px;
+}
+
+button {
+    background: linear-gradient(135deg, #a51d24, #680b12);
+    color: white;
+    border: 2px solid #d4af37;
+    border-radius: 30px;
+    padding: 15px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px #d4af3755;
+}
+
+.creditos {
+    color: #806b50;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+footer {
+    color: #806b50;
+    font-size: 12px;
+    padding: 10px 10px 25px;
+}
+</style>
+</head>
+
+<body>
+
+<main class="tarjeta">
+
+<img id="felicitacion" alt="Felices fiestas 2026">
+
+<div class="musica">
+    <button id="boton" onclick="reproducir()">
+        ♫ Escucha la magia de la Navidad
+    </button>
+
+    <p class="creditos">
+        Música: Jason Shaw / Audionautix
+    </p>
+</div>
+
+<audio id="audio" loop preload="none">
+    <source src="navidad-musica.ogg" type="audio/ogg">
+</audio>
+
+<footer>
+    Creado con cariño por Ferval © 2026
+</footer>
+
+</main>
+
+<script>
+const personas = {
+    valeria: "valeria.png",
+    carlos: "carlos.png"
+};
+
+const parametros = new URLSearchParams(window.location.search);
+const nombre = (parametros.get("nombre") || "valeria").toLowerCase();
+
+document.getElementById("felicitacion").src =
+    personas[nombre] || personas.valeria;
+
+const audio = document.getElementById("audio");
+const boton = document.getElementById("boton");
+
+async function reproducir() {
+    if (audio.paused) {
+        try {
+            await audio.play();
+            boton.textContent = "❚❚ Pausar música";
+        } catch (error) {
+            alert("No se pudo reproducir la música.");
+        }
+    } else {
+        audio.pause();
+        boton.textContent = "♫ Escucha la magia de la Navidad";
+    }
+}
+</script>
+
+</body>
+</html>
+
